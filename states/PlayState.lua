@@ -10,6 +10,9 @@ function PlayState:init()
     -- bird sprite
     self.bird = Bird{}
 
+    -- medals sprites
+    self.medals = Medals{}
+
     -- keep track of spawn pipePairs
     self.pipePairs = {}
     
@@ -28,8 +31,8 @@ function PlayState:update(dt)
     -- update timer for pipe spawning 
     self.timer = self.timer + dt
 
-    -- spawn a new pai of pipes every sec. and a half
-    if self.timer > 2 then
+    -- spawn a new pair of pipes every sec. and a half
+    if self.timer > math.random(2,100) then
         local y = math.max(
             -PIPE_HEIGHT + 10, 
             math.min(self.lastY + math.random(-20, 20), VIRTUAL_HEIGHT - 90 - PIPE_HEIGHT))
@@ -101,6 +104,19 @@ function PlayState:render()
     -- display score
     love.graphics.setFont(flappyFont)
     love.graphics.print('Score: ' .. tostring(self.score), 8, 8)
+
+    if self.score == 1 then
+        -- display bronze medal
+        self.medals:render(1)
+    elseif self.score == 2 then
+        -- remove previous medal
+        -- display silver medal
+        self.medals:render(2)
+    elseif self.score >= 3 then
+        -- remove previous medal
+        -- display gold medal
+        self.medals:render(3)
+    end
 
     -- draw bird
     self.bird:render()

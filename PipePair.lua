@@ -1,6 +1,6 @@
 PipePair = Class{}
 
-local GAP_HEIGHT = 150
+local GAP_HEIGHT = 90
 
 function PipePair:init(y)
     self.x = VIRTUAL_WIDTH + 32
@@ -10,7 +10,7 @@ function PipePair:init(y)
 
     self.pipes = {
         ['upper'] = Pipe('top', self.y),
-        ['lower'] = Pipe('bottom', self.y + PIPE_HEIGHT + GAP_HEIGHT)
+        ['lower'] = Pipe('bottom', self.y + PIPE_HEIGHT + math.random(100, 150))
     }
 
     -- check if pipes are ready to be removed - they are out of the screen

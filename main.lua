@@ -11,6 +11,7 @@ require 'states/ScoreState'
 require 'Bird'
 require 'Pipe'
 require 'PipePair'
+require 'Medals'
 
 
 WINDOW_WITDH = 1280
@@ -118,6 +119,8 @@ end
 
 function love.draw()
     push:start()
+    
+
     -- draw backdround
     love.graphics.draw(background, -background_scroll, 0)  
 
