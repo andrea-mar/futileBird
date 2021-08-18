@@ -7,6 +7,8 @@ require 'states/BaseState'
 require 'states/TitleScreenState'
 require 'states/PlayState'
 require 'states/ScoreState'
+require 'states/PauseState'
+require 'states/ResumeState'
 
 require 'Bird'
 require 'Pipe'
@@ -68,8 +70,10 @@ function love.load()
 
     gStateMachine = StateMachine {
         ['title'] = function() return TitleScreenState() end,
-        ['score'] = function() return ScoreState end,
-        ['play'] = function() return PlayState() end
+        ['score'] = function() return ScoreState() end,
+        ['play'] = function() return PlayState() end,
+        ['pause'] = function() return PauseState() end,
+        ['resume'] = function() return ResumeState() end
     }
 
     gStateMachine:change('title')
@@ -120,7 +124,6 @@ end
 function love.draw()
     push:start()
     
-
     -- draw backdround
     love.graphics.draw(background, -background_scroll, 0)  
 

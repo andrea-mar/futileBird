@@ -28,6 +28,16 @@ end
 
 function PlayState:update(dt)
 
+    -- pause the game if p key is pressed
+    if love.keyboard.wasPressed('p') then
+        gStateMachine:change('pause', {
+            score = self.score,
+            bird = self.bird,
+            pipePairs = self.pipePairs,
+            medals = self.medals
+        })
+    end
+   
     -- update timer for pipe spawning 
     self.timer = self.timer + dt
 
@@ -92,7 +102,7 @@ function PlayState:update(dt)
             score = self.score
         })
     end
-
+    
 end
 
 function PlayState:render()
@@ -133,3 +143,5 @@ function PlayState:exit()
     -- stop scrolling when game over
     scrolling = false
 end
+
+
